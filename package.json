@@ -1,11 +1,13 @@
 {
   "name": "vscode-deno-tools",
 	"displayName": "vscode-deno-tools",
+	"repository": "https://github.com/cgqaq/vscode-deno-tools",
 	"publisher": "CGQAQ",
 	"author": {
 		"name": "CGQAQ",
-		"url": "https://github.com/cgqaq/vscode-deno-tools"
+		"url": "https://github.com/cgqaq"
 	},
+	"license": "MIT",
 	"description": "This is for someone who only wants to use deno tools(such as formatter).",
 	"version": "0.0.1",
 	"engines": {
