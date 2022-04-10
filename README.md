@@ -9,6 +9,9 @@ currently only support deno fmt
 
 ## Changelogs
 
+### v0.0.3
+> fixed some known issues, and add logs
+
 ### v0.0.2
 > this extension is now register as a format provider. now you can take adventage of vscode `format on save` feature and other features as well
 
