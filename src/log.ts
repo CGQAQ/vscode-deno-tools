@@ -1,15 +1,15 @@
-import * as vscode from "vscode";;
+import * as vscode from "vscode";
 
 const channel = vscode.window.createOutputChannel("Deno tools extension");
 
 export function showOutputWindow() {
-    channel.show();
+  channel.show();
 }
 
 export function println(...messages: string[]) {
-    channel.appendLine(messages.join(" "));
+  channel.appendLine(messages.join(" "));
 }
 
 export function print(...messages: string[]) {
-    channel.append(messages.join(" "));
+  channel.append(messages.join(" "));
 }

@@ -1,9 +1,9 @@
-import {run, runWithStdio} from "./run";
+import { run, runWithStdio } from "./run";
 
 export function formatFile(...files: string[]) {
-    run("deno", "fmt", ...files);
+  run("deno", "fmt", ...files);
 }
 
 export async function formatString(content: string): Promise<string> {
-    return runWithStdio("deno", content, "fmt", "-");
+  return runWithStdio("deno", content, "fmt", "-");
 }
