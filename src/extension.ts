@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { getDenoCommand } from "./tools";
 import which from "which";
 import { formatString } from "./deno";
+import { SUPPORTED_LANGUAGES } from './constants';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -22,6 +23,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		console.log("Found the Deno in path: ", cmd);
 	} catch {
 		console.error("Deno is not installed");
+		vscode.window.showErrorMessage("Deno is not installed", "Deno is installed, reload to active.").then((click) => {
+			if(click === "Deno is installed, reload to active.") {
+				vscode.commands.executeCommand("workbench.action.reloadWindow");
+			}
+		});
 		return;
 	}
 
@@ -48,6 +54,22 @@ export async function activate(context: vscode.ExtensionContext) {
 			console.log(text, formatted);
 		}
 	});
+
+	SUPPORTED_LANGUAGES.map(
+		(language) => {
+			return vscode
+				.languages
+				.registerDocumentFormattingEditProvider(language, {
+					provideDocumentFormattingEdits: async (document: vscode.TextDocument) => {
+						const text = document.getText();
+						if (typeof text === "string") {
+							const formatted = await formatString(text);
+							return [vscode.TextEdit.replace(document.validateRange(new vscode.Range(0, 0, document.lineCount, 0)), formatted)];
+						}
+					}
+				});
+		}
+	).forEach((disposable) => context.subscriptions.push(disposable));
 
 	context.subscriptions.push(disposable);
 }
