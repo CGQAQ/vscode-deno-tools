@@ -3,3 +3,4 @@ dist
 dev
 *.vsix
 **/.DS_Store
+yarn-error.log

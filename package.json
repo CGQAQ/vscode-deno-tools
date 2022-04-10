@@ -33,7 +33,87 @@
 				"command": "vscode-deno-tools.foramtCurrent",
 				"title": "(Deno tools) format current file"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Deno tools",
+			"properties": {
+				"denoTools.enable": {
+					"type": "boolean",
+					"description": "Enable or disable deno tools, if this is unchecked, all commands will be disabled.",
+					"default": true
+				},
+				"denoTools.format.enable": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter.",
+					"default": true
+				},
+				"denoTools.format.enableForJavaScript": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for JavaScript.",
+					"default": true
+				},
+				"denoTools.format.enableForTypeScript": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for TypeScript.",
+					"default": true
+				},
+				"denoTools.format.enableForJavaScriptReact": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for JavaScript React.",
+					"default": true
+				},
+				"denoTools.format.enableForTypeScriptReact": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for TypeScript React.",
+					"default": true
+				},
+				"denoTools.format.enableForMarkdown": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for Markdown.",
+					"default": true
+				},
+				"denoTools.format.enableForJSON": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for JSON.",
+					"default": true
+				},
+				"denoTools.format.enableForJSONC": {
+					"type": "boolean",
+					"description": "Enable or disable the formatter for JSONC.",
+					"default": true
+				},
+				"denoTools.format.config.useTabs": {
+					"type": "boolean",
+					"description": "Whether to use tabs instead of spaces for indentation.",
+					"default": false
+				},
+				"denoTools.format.config.lineWidth": {
+					"type": "number",
+					"description": "The maximum line width.",
+					"default": 80
+				},
+				"denoTools.format.config.indentWidth": {
+					"type": "number",
+					"description": "The number of spaces per indentation-level.",
+					"default": 2
+				},
+				"denoTools.format.config.singleQuote": {
+					"type": "boolean",
+					"description": "Whether to use single quotes instead of double quotes.",
+					"default": false
+				},
+				"denoTools.format.config.proseWrap": {
+					"type": "string",
+					"enum": [
+						"preserve",
+						"always",
+						"never"
+					],
+					"description": "How to wrap prose.",
+					"default": "always"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
