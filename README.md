@@ -9,6 +9,9 @@ currently only support deno fmt
 
 ## Changelogs
 
+### v0.1.1
+> relex vscode engines restriction(just a little bit, at least 1.64 for now)
+
 ### v0.1.0
 > Major release: deno format is consider useful for now.
 

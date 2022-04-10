@@ -9,9 +9,9 @@
 	},
 	"license": "MIT",
 	"description": "This is for someone who only wants to use deno tools(such as formatter).",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"engines": {
-		"vscode": "^1.66.0"
+		"vscode": "^1.64.0"
 	},
 	"categories": [
 		"Linters",
