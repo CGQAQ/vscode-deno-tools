@@ -9,4 +9,4 @@ export const SUPPORTED_LANGUAGES = [
   "markdown",
   "json",
   "jsonc",
-];
+] as const;

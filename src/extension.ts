@@ -3,10 +3,14 @@
 import * as vscode from "vscode";
 import { getDenoCommand } from "./tools";
 import which from "which";
-import { formatString } from "./deno";
+import DenoCmd from "./deno";
 import { SUPPORTED_LANGUAGES } from "./constants";
 
 import { println, showOutputWindow } from "./log";
+import { ConfigurationController } from "./configuration";
+
+let config: ConfigurationController | null = null;
+let denoCmd: DenoCmd | null = null;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -36,6 +40,9 @@ export async function activate(context: vscode.ExtensionContext) {
     return;
   }
 
+  config = new ConfigurationController();
+  denoCmd = new DenoCmd(config);
+
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
@@ -48,8 +55,11 @@ export async function activate(context: vscode.ExtensionContext) {
       }
 
       const text = editor.document.getText();
-      if (typeof text === "string") {
-        const formatted = await formatString(text);
+      if (typeof text === "string" && denoCmd) {
+        const formatted = await denoCmd.formatString(
+          editor.document.languageId,
+          text,
+        );
 
         //Creating a new range with startLine, startCharacter & endLine, endCharacter.
         let invalidRange = new vscode.Range(0, 0, editor.document.lineCount, 0);
@@ -79,7 +89,10 @@ export async function activate(context: vscode.ExtensionContext) {
           ) => {
             const text = document.getText();
             if (typeof text === "string") {
-              const formatted = await formatString(text);
+              const formatted = await denoCmd?.formatString(language, text);
+              if (!formatted || formatted === text) {
+                return [];
+              }
               println(
                 `formatted successfully from "${text}" to "${formatted}"`,
               );
@@ -98,7 +111,17 @@ export async function activate(context: vscode.ExtensionContext) {
   ).forEach((disposable) => context.subscriptions.push(disposable));
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(config.configChanged(
+    (config) => {
+      println("config changed: ", JSON.stringify(config));
+    },
+  ));
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  if (config) {
+    config.dispose();
+    config = null;
+  }
+}

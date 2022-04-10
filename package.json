@@ -82,6 +82,11 @@
 					"description": "Enable or disable the formatter for JSONC.",
 					"default": true
 				},
+				"denoTools.format.config.enable" : {
+					"type": "boolean",
+					"description": "Enable or disable the formatter config(enable will override config file in workspace).",
+					"default": false
+				},
 				"denoTools.format.config.useTabs": {
 					"type": "boolean",
 					"description": "Whether to use tabs instead of spaces for indentation.",
