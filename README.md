@@ -9,6 +9,9 @@ currently only support deno fmt
 
 ## Changelogs
 
+### v0.1.0
+> Major release: deno format is consider useful for now.
+
 ### v0.0.3
 > fixed some known issues, and add logs
 
